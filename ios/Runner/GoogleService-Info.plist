@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyApdylYjpsL7mY011hTwBk_L5uoHlnTrlQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>764228186874</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.travello</string>
+	<key>PROJECT_ID</key>
+	<string>travello-103e2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>travello-103e2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:764228186874:ios:a85e9a590b4de249934f43</string>
+	<key>DATABASE_URL</key>
+	<string>https://travello-103e2-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
