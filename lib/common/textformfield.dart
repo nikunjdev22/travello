@@ -2,13 +2,23 @@ import 'package:flutter/material.dart';
 import '../Constant/colors_constant.dart';
 
 class TTextField extends StatelessWidget {
-  const TTextField({super.key, required this.text});
+  const TTextField(
+      {super.key,
+      required this.text,
+      required this.controller,
+      });
 
   final String text;
+  final TextEditingController controller;
+
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      controller: controller,
+      style: TextStyle(
+        color: AppColors.black,
+      ),
       decoration: InputDecoration(
         hintText: text,
         hintStyle: TextStyle(

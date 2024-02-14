@@ -1,11 +1,11 @@
+import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:travello/View/Home/home_screen.dart';
 import '../../../View/Onboarding/onboarding.dart';
-import '../../../common/customSnackbar.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -13,83 +13,47 @@ class AuthenticationRepository extends GetxController {
   /// Variable
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
+  late Rx<User?> firebaseUser;
+  late Rx<GoogleSignInAccount?> googleSignInAccount;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   /// called from main.dart on app launch
   @override
   void onReady() {
-    screenRedirect();
+    super.onReady();
+    // auth is coming from the constants.dart file but it is basically FirebaseAuth.instance.
+    // Since we have to use that many times I just made a constant file and declared there
+
+    firebaseUser = Rx<User?>(_auth.currentUser);
+    googleSignInAccount = Rx<GoogleSignInAccount?>(googleSignIn.currentUser);
+    ever(firebaseUser, screenRedirect());
+
+    googleSignInAccount.bindStream(googleSignIn.onCurrentUserChanged);
+    ever(googleSignInAccount, screenRedirect());
   }
 
   /// Function to show Relevant Screen
   screenRedirect() async {
-    // final user = _auth.currentUser;
-    /*if (user != null) {
+    final user = _auth.currentUser;
+    if (user != null) {
       if (user.emailVerified) {
-        Get.offAll(() => const NavigationMenu());
+        Get.offAll(() => const HomeScreen());
       } else {
-        Get.offAll(() => VerifyEmailScreen(
+        Get.offAll(() => /*VerifyEmailScreen(
               email: _auth.currentUser?.email,
-            ));
+            )*/ Text('data'));
       }
-    }*/ // else {
-    // Local Storage
-    deviceStorage.writeIfNull('isFirstTime', true);
-    deviceStorage.read('isFirstTime') != true
-        ? Get.offAll(() => const HomeScreen())
-        : Get.offAll(const OnBoardingScreen());
-    // }
-  }
-
-  static Future<User?> signInWithGoogle({required BuildContext context}) async {
-    User? user;
-    final auth = FirebaseAuth.instance;
-
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
-
-    if (googleSignInAccount != null) {
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
-
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
-
-      try {
-        final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
-
-        user = userCredential.user;
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'account-exists-with-different-credential') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            Authentication.customSnackBar(
-              content: 'The account already exists with a different credential',
-            ),
-          );
-        } else if (e.code == 'invalid-credential') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            Authentication.customSnackBar(
-              content: 'Error occurred while accessing credentials. Try again.',
-            ),
-          );
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          Authentication.customSnackBar(
-            content: 'Error occurred using Google Sign In. Try again.',
-          ),
-        );
-      }
-
-      return user;
+    } else {
+      // Local Storage
+      deviceStorage.writeIfNull('isFirstTime', true);
+      deviceStorage.read('isFirstTime') != true
+          ? Get.offAll(() => const HomeScreen())
+          : Get.offAll(const OnBoardingScreen());
+      // }
     }
-    return null;
   }
 }
+
 /*
 /* -------------Social Sign-In sign-in-----------------*//*
 

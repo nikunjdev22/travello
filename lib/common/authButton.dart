@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-
 import '../Constant/colors_constant.dart';
 
 class TAuthButton extends StatelessWidget {
   const TAuthButton({
     super.key,
-
-    this.color= AppColors.white,
+    this.color = AppColors.white,
     required this.text,
     this.shadowColor,
-    this.buttonColor = AppColors.primary ,
-
+    this.buttonColor = AppColors.primary,
+    this.onPressed,
   });
 
   final String text;
   final color;
   final shadowColor;
   final buttonColor;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 40,
       decoration: BoxDecoration(
-        color: color ,
+        color: color,
         borderRadius: BorderRadius.all(
           Radius.circular(25),
         ),
@@ -37,7 +36,7 @@ class TAuthButton extends StatelessWidget {
         ],
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           text,
           style: TextStyle(

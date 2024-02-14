@@ -2,17 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/Constant/image_constant.dart';
+import 'package:travello/View/controller/auth/auth_controller.dart';
 import 'package:travello/common/authButton.dart';
 import 'package:travello/common/textformfield.dart';
-
 import '../../../Utils /sizes.dart';
 import '../../../common/text.dart';
-import '../../controller/login/login_controller.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
-    final controller= Get.put(LoginController());
+
+    final controller= Get.put(AuthController());
+    final email = TextEditingController();
+    final password = TextEditingController();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,11 +38,11 @@ class SignUp extends StatelessWidget {
         SizedBox(
           height: TSizes.md,
         ),
-        TTextField(text: 'Enter Email / Username'),
+        TTextField(text: 'Enter Email / Username',controller: email,),
         SizedBox(
           height: TSizes.md,
         ),
-        TTextField(text: 'Password'),
+        TTextField(text: 'Password',controller: password),
         SizedBox(
           height: TSizes.lg,
         ),
@@ -43,6 +51,7 @@ class SignUp extends StatelessWidget {
           color: AppColors.primary,
           buttonColor: AppColors.white,
           shadowColor: AppColors.primary.withOpacity(0.2),
+          onPressed: () => controller.register(email.text, password.text),
         ),
         SizedBox(
           height: TSizes.lg,
@@ -58,9 +67,7 @@ class SignUp extends StatelessWidget {
               height: TSizes.md,
             ),
             IconButton(
-              onPressed: () {
-
-              },
+              onPressed: () => controller.signInWithGoogle(),
               icon: Image(
                 height: TSizes.iconsLg,
                 width: TSizes.iconsLg,
