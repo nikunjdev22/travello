@@ -15,13 +15,14 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
+  final email = TextEditingController();
+  final password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
 
     final controller= Get.put(AuthController());
-    final email = TextEditingController();
-    final password = TextEditingController();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +39,7 @@ class _SignUpState extends State<SignUp> {
         SizedBox(
           height: TSizes.md,
         ),
-        TTextField(text: 'Enter Email / Username',controller: email,),
+        TTextField(text: 'Enter Email / Username',controller: email),
         SizedBox(
           height: TSizes.md,
         ),
@@ -51,7 +52,7 @@ class _SignUpState extends State<SignUp> {
           color: AppColors.primary,
           buttonColor: AppColors.white,
           shadowColor: AppColors.primary.withOpacity(0.2),
-          onPressed: () => controller.register(email.text, password.text),
+          onPressed: () => AuthController.instance.register(email.text, password.text,),
         ),
         SizedBox(
           height: TSizes.lg,

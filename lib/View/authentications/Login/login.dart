@@ -1,46 +1,3 @@
-/*
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../Constant/string_constant.dart';
-import '../../../Utils /sizes.dart';
-import '../../../common/spacing_styles.dart';
-import 'Widgets/form_divider.dart';
-import 'Widgets/login_form.dart';
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: TSpacingStyles.paddingWithAppBarHeight,
-          child: Column(
-            children: [
-              /// Logo,Title and SubTitle
-              //const TLoginHeader(),
-              /// Form
-              const TLoginForm(),
-
-              ///Divider
-              TFormDivider(
-                dividerText: AppString.orSignInWith.capitalize!,
-              ),
-              const SizedBox(height: TSizes.spaceBtwSections),
-
-              ///Footer
-              //const TSocialButton()
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-*/
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travello/Constant/colors_constant.dart';
@@ -56,8 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final email = TextEditingController();
 
+  final email = TextEditingController();
   final password = TextEditingController();
 
   @override
