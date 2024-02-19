@@ -1,15 +1,13 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:travello/View/Onboarding/onboarding.dart';
+import '../../../Utils /authexception.dart';
 import '../../../common/animation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../../Home/home_screen.dart';
-
 
 class AuthController extends GetxController {
   static AuthController get instance => Get.find();
@@ -21,7 +19,9 @@ class AuthController extends GetxController {
   late Rx<GoogleSignInAccount?> googleSignInAccount;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final signOut = true.obs;
+  static late AuthStatus _status;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+
   /// called from main.dart on app launch
   @override
   void onReady() {
@@ -30,7 +30,6 @@ class AuthController extends GetxController {
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
     ever(firebaseUser, screenRedirect);
-
   }
 
   screenRedirect(User? user) async {
@@ -40,7 +39,7 @@ class AuthController extends GetxController {
       // Local Storage
       deviceStorage.writeIfNull('isFirstTime', true);
       deviceStorage.read('isFirstTime') != true
-          ? Get.offAll(() =>  AnimationLoginSignUp())
+          ? Get.offAll(() => AnimationLoginSignUp())
           : Get.offAll(const OnBoardingScreen());
     }
   }
@@ -48,22 +47,54 @@ class AuthController extends GetxController {
   void login(String email, password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (firebaseAuthException) {}
+      //return AuthStatus.successful;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Get.snackbar(
+          'Error',
+          'No user found for that email.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      } else if (e.code == 'wrong-password') {
+        Get.snackbar(
+          'Error',
+          'Wrong password provided for that user.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   void register(String email, password) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-    } catch (firebaseAuthException) {
-      Get.snackbar("About User", " User message",
-          backgroundColor: Colors.redAccent,
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        Get.snackbar(
+          'Error',
+          'The password provided is too weak.',
           snackPosition: SnackPosition.BOTTOM,
-          titleText: Text('Account Already exists',
-              style: TextStyle(color: Colors.white)),
-          messageText: Text(e.toString(),
-            style: TextStyle(color: Colors.white),
-          ));
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      } else if (e.code == 'email-already-in-use') {
+        Get.snackbar(
+          'Error',
+          'The account already exists for that email.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -84,7 +115,6 @@ class AuthController extends GetxController {
             .signInWithCredential(credential)
             .catchError((onErr) => print(onErr));
       }
-
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -95,7 +125,15 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<AuthStatus> resetPassword({required String email}) async {
+    await _auth
+        .sendPasswordResetEmail(email: email)
+        .then((value) => _status = AuthStatus.successful)
+        .catchError((e) => _status = AuthExceptionHandler.handleAuthException(e));
+    return _status;
+  }
+
   Future<void> logout() async {
-      await  _auth.signOut();
+    await _auth.signOut();
   }
 }
