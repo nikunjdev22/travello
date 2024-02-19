@@ -18,6 +18,7 @@ class TSizes {
   static const double fontSizeSm = 14.0;
   static const double fontSizeMd = 16.0;
   static const double fontSizeLg = 18.0;
+  static const double fontSizeXl = 24.0;
 
   //Button Sizes
   static const double buttonHeight = 18.0;
@@ -65,7 +66,4 @@ class TSizes {
 
   //Loading Indicator size
   static const double loadingIndicatorSize= 36.0;
-
-  //Grid View Spacing
-  static const double gridviewSpacing= 16.0;
 }
