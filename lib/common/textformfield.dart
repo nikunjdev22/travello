@@ -2,19 +2,25 @@ import 'package:flutter/material.dart';
 import '../Constant/colors_constant.dart';
 
 class TTextField extends StatelessWidget {
-  const TTextField(
-      {super.key,
-      required this.text,
-      required this.controller,
-      });
+  const TTextField({
+    super.key,
+    required this.text,
+    required this.controller,
+    required this.validate,
+    required this.obscureText,
+  });
 
   final String text;
   final TextEditingController controller;
+  final FormFieldValidator<String> validate;
+  final bool obscureText;
 
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText ,
+      validator: validate,
       controller: controller,
       style: TextStyle(
         color: AppColors.black,
