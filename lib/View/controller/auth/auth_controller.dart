@@ -8,6 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:travello/View/Onboarding/onboarding.dart';
 import '../../../common/animation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import '../../../common/carousel_slider.dart';
 import '../../Home/home_screen.dart';
 
 
@@ -35,7 +36,7 @@ class AuthController extends GetxController {
 
   screenRedirect(User? user) async {
     if (user != null) {
-      Get.offAll(() => const HomeScreen());
+      Get.offAll(() =>  CarousalScreen());
     } else {
       // Local Storage
       deviceStorage.writeIfNull('isFirstTime', true);
