@@ -20,7 +20,7 @@ class TAuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 48,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.all(
