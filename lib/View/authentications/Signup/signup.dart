@@ -59,7 +59,7 @@ class _SignUpState extends State<SignUp> {
                   email.text,
                   password.text,
                 );
-                return ;
+                return;
               }
             }
           ),

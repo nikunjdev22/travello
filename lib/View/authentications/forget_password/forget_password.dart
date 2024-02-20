@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:travello/Utils%20/app_validation.dart';
 import 'package:travello/View/controller/auth/auth_controller.dart';
-import '../../../Utils /authexception.dart';
+import '../../../Utils /auth_exception.dart';
 import '../../../Utils /sizes.dart';
 import '../../controller/auth/forget_controller.dart';
 

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:travello/View/Onboarding/onboarding.dart';
-import '../../../Utils /authexception.dart';
+import '../../../Utils /auth_exception.dart';
 import '../../../common/animation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import '../../Home/home_screen.dart';
@@ -21,6 +21,7 @@ class AuthController extends GetxController {
   final signOut = true.obs;
   static late AuthStatus _status;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  bool isLoading = false;
 
   /// called from main.dart on app launch
   @override
@@ -46,9 +47,12 @@ class AuthController extends GetxController {
 
   void login(String email, password) async {
     try {
+      isLoading = true;
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      isLoading = false;
       //return AuthStatus.successful;
     } on FirebaseAuthException catch (e) {
+      isLoading = false;
       if (e.code == 'user-not-found') {
         Get.snackbar(
           'Error',
@@ -73,9 +77,12 @@ class AuthController extends GetxController {
 
   void register(String email, password) async {
     try {
+      isLoading = true;
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+        isLoading = false;
     } on FirebaseAuthException catch (e) {
+      isLoading = false;
       if (e.code == 'weak-password') {
         Get.snackbar(
           'Error',
@@ -100,6 +107,7 @@ class AuthController extends GetxController {
 
   Future<void> signInWithGoogle() async {
     try {
+      isLoading = true;
       GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
@@ -115,7 +123,9 @@ class AuthController extends GetxController {
             .signInWithCredential(credential)
             .catchError((onErr) => print(onErr));
       }
+      isLoading = false;
     } catch (e) {
+      isLoading = false;
       Get.snackbar(
         "Error",
         e.toString(),
