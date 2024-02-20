@@ -82,9 +82,23 @@ class HomeScreen extends StatelessWidget {
                                           TextStyle(color: AppColors.primary),
                                     ),
                                     onPressed: () => Get.to(() => DetailsScreen(
-                                          image: homeController.productData!.products![index].thumbnail.toString(),
-                                          title: homeController.productData!.products![index].title.toString(),
-                                          description: homeController.productData!.products![index].description.toString(),
+                                          image: homeController.productData!
+                                              .products![index].thumbnail
+                                              .toString(),
+                                          title: homeController.productData!
+                                              .products![index].title
+                                              .toString(),
+                                          description: homeController
+                                              .productData!
+                                              .products![index]
+                                              .description
+                                              .toString(),
+                                          additionalItems: homeController
+                                              .productData!
+                                              .products![index]
+                                              .images!
+                                              .map((image) => image.toString())
+                                              .toList(),
                                         )),
                                   ),
                                 ],
