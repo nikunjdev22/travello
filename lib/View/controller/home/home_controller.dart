@@ -22,13 +22,6 @@ class HomeController extends GetxController {
       if (response.statusCode == 200) {
         ///data successfully
         var result = jsonDecode(response.body);
-        final List<dynamic>? imagesList = result['images'];
-
-        if (imagesList != null) {
-          imageUrls.assignAll(List<String>.from(imagesList));
-        } else {
-          print('Error: Key "images" not found or is null in API response.');
-        }
         productData = ProductData.fromJson(result);
         print('vhc  $result');
       } else {
