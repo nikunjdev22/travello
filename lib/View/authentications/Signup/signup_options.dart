@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/Utils%20/sizes.dart';
-import 'package:travello/common/text.dart';
+import 'package:travello/common/text/text.dart';
 import '../../../common/authButton.dart';
 
 class SignUpOption extends StatelessWidget {

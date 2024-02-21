@@ -4,10 +4,10 @@ import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/Constant/image_constant.dart';
 import 'package:travello/View/controller/auth/auth_controller.dart';
 import 'package:travello/common/authButton.dart';
-import 'package:travello/common/textformfield.dart';
+import 'package:travello/common/text/textformfield.dart';
 import '../../../Utils /app_validation.dart';
 import '../../../Utils /sizes.dart';
-import '../../../common/text.dart';
+import '../../../common/text/text.dart';
 
 class SignUp extends StatefulWidget {
   @override

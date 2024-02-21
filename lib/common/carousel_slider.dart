@@ -4,7 +4,7 @@ import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/Constant/image_constant.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:travello/View/Home/home_screen.dart';
-import 'package:travello/common/text.dart';
+import 'package:travello/common/text/text.dart';
 
 List<String> images = [
   AppImages.carousalSlider1,

@@ -5,8 +5,8 @@ import 'package:travello/Utils%20/app_validation.dart';
 import 'package:travello/Utils%20/sizes.dart';
 import 'package:travello/View/controller/auth/auth_controller.dart';
 import '../../../common/authButton.dart';
-import '../../../common/text.dart';
-import '../../../common/textformfield.dart';
+import '../../../common/text/text.dart';
+import '../../../common/text/textformfield.dart';
 import '../forget_password/forget_password.dart';
 
 class LoginScreen extends StatefulWidget {

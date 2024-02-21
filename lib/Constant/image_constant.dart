@@ -14,4 +14,7 @@ static String carousalSlider2= "assets/image/jpeg/13eaaff.jpeg";
 static String carousalSlider3= "assets/image/jpeg/961a8d9.jpeg";
 static String carousalSlider4= "assets/image/jpeg/809181d.jpeg";
 static String carousalSlider5= "assets/image/jpeg/dabf1ab.jpeg";
+static String user= "assets/image/png/user.png";
+
+
 }

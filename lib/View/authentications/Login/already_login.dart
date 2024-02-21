@@ -3,7 +3,7 @@ import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/Utils%20/sizes.dart';
 
 import '../../../common/authButton.dart';
-import '../../../common/text.dart';
+import '../../../common/text/text.dart';
 
 class LoginOption extends StatelessWidget {
   @override

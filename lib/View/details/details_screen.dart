@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/Utils%20/sizes.dart';
-import '../../common/text.dart';
+import '../../common/text/text.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({
