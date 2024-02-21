@@ -79,20 +79,33 @@ class ListViewPage extends StatelessWidget {
                               style: TextStyle(color: AppColors.primary),
                             ),
                             onPressed: () => Get.to(() => PlaceDetails(
-                                  url: homeController
-                                      .productData!.products![index].thumbnail
-                                      .toString(),
-                                  title: homeController
-                                      .productData!.products![index].title
-                                      .toString(),
-                                  description: homeController
-                                      .productData!.products![index].description
-                                      .toString(),
-                                  additionalItems: homeController
-                                      .productData!.products![index].images!
-                                      .map((image) => image.toString())
-                                      .toList(),
-                                )),
+                              title: homeController.productData!
+                                  .products![index].title
+                                  .toString(),
+                              description: homeController
+                                  .productData!
+                                  .products![index]
+                                  .description
+                                  .toString(),
+                              url: homeController.productData!
+                                  .products![index].thumbnail
+                                  .toString(),
+                              rating: homeController.productData!
+                                  .products![index].rating
+                                  .toString(),
+                              brand: homeController.productData!
+                                  .products![index].brand
+                                  .toString(),
+                              category: homeController.productData!
+                                  .products![index].category
+                                  .toString(),
+                              additionalItems: homeController
+                                  .productData!
+                                  .products![index]
+                                  .images!
+                                  .map((image) => image.toString())
+                                  .toList(),
+                            )),
                           ),
                         ],
                       ),

@@ -114,7 +114,7 @@ class PlaceDetails extends StatelessWidget {
               titlePadding: EdgeInsets.all(20),
               background: Image.network(
                 url!,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),
