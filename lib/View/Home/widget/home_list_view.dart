@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travello/Constant/image_constant.dart';
+import 'package:travello/View/details/details_screen.dart';
 
 import '../../../Constant/colors_constant.dart';
 import '../../../Utils /sizes.dart';
 import '../../../common/text/text.dart';
 import '../../controller/home/home_controller.dart';
-import '../../details/details_screen.dart';
 
 class ListViewPage extends StatelessWidget {
   const ListViewPage({super.key});
@@ -78,8 +78,8 @@ class ListViewPage extends StatelessWidget {
                               "EXPLORE",
                               style: TextStyle(color: AppColors.primary),
                             ),
-                            onPressed: () => Get.to(() => DetailsScreen(
-                                  image: homeController
+                            onPressed: () => Get.to(() => PlaceDetails(
+                                  url: homeController
                                       .productData!.products![index].thumbnail
                                       .toString(),
                                   title: homeController
