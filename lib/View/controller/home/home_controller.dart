@@ -6,6 +6,7 @@ import 'package:travello/model/product.dart';
 class HomeController extends GetxController {
   var isLoading = false.obs;
   ProductData? productData;
+  RxList<String> imageUrls = <String>[].obs;
 
   @override
   Future<void> onInit() async {
@@ -21,7 +22,6 @@ class HomeController extends GetxController {
       if (response.statusCode == 200) {
         ///data successfully
         var result = jsonDecode(response.body);
-
         productData = ProductData.fromJson(result);
         print('vhc  $result');
       } else {

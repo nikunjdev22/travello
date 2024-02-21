@@ -1,10 +1,4 @@
 class AppValidator {
-  static String? validateEmptyText(String? fieldName, String? value) {
-    if (value == null || value.isEmpty) {
-      return '$fieldName is required';
-    }
-    return null;
-  }
 
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
@@ -46,15 +40,4 @@ class AppValidator {
     return null;
   }
 
-  static String? validPhoneNumber(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'phone number is required';
-    }
-
-    final phoneRegExp = RegExp(r'^\d{10}$');
-    if (phoneRegExp.hasMatch(value)) {
-      return 'Invalid Phone number format (10 digit required)';
-    }
-    return null;
-  }
 }
