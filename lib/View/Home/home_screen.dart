@@ -112,6 +112,9 @@ class HomeScreen extends StatelessWidget {
                                           url: homeController.productData!
                                               .products![index].thumbnail
                                               .toString(),
+                                          price: homeController.productData!
+                                              .products![index].price
+                                              .toString(),
                                           rating: homeController.productData!
                                               .products![index].rating
                                               .toString(),

@@ -1,3 +1,4 @@
+import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -74,6 +75,7 @@ class PlaceDetails extends StatelessWidget {
   final String? title;
   final String? description;
   final String? brand;
+  final String? price;
   final String? url;
   final String? rating;
   final String? category;
@@ -85,6 +87,7 @@ class PlaceDetails extends StatelessWidget {
       this.title,
       this.description,
       this.brand,
+      this.price,
       this.url,
       this.rating,
       this.category,
@@ -155,14 +158,14 @@ class PlaceDetails extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            rating!,
+                            price!,
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           SizedBox(width: 5),
                           Icon(
-                            Icons.star_border_outlined,
+                            Icons.monetization_on,
                             size: 18,
                             color: Colors.red,
                           ),
@@ -266,8 +269,29 @@ class PlaceDetails extends StatelessWidget {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.star, color: Colors.yellow),
-                              Text(rating!),
+                              AnimatedRatingStars(
+                                initialRating: 3.5,
+                                minRating: 0.0,
+                                maxRating: 5.0,
+                                filledColor: Colors.amber,
+                                emptyColor: Colors.grey,
+                                filledIcon: Icons.star,
+                                halfFilledIcon: Icons.star_half,
+                                emptyIcon: Icons.star_border,
+                                onChanged: (double rating) {
+                                  // Handle the rating change here
+                                  print('Rating: $rating');
+                                },
+                                displayRatingValue: true,
+                                interactiveTooltips: true,
+                                customFilledIcon: Icons.star,
+                                customHalfFilledIcon: Icons.star_half,
+                                customEmptyIcon: Icons.star_border,
+                                starSize: 18.0,
+                                animationDuration: Duration(milliseconds: 300),
+                                animationCurve: Curves.easeInOut,
+                                readOnly: false,
+                              ),
                             ],
                           ),
                         ),
