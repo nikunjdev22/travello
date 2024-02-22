@@ -8,7 +8,7 @@ import 'package:travello/common/text/text.dart';
 import '../../Constant/image_constant.dart';
 import '../../common/drawer.dart';
 import '../../common/search_container.dart';
-import '../../common/t_circular_image.dart';
+import '../hamburger_menu/Widgets/t_circular_image.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

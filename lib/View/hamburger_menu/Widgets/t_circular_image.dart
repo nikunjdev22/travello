@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travello/Constant/colors_constant.dart';
-import '../Utils /sizes.dart';
+import '../../../Utils /sizes.dart';
 
 class TCircularImage extends StatelessWidget {
   const TCircularImage({

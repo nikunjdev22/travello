@@ -1,8 +1,8 @@
-import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_rating_stars/animated_rating_stars.dart';
+
 import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/common/text/text.dart';
-
 /*class DetailsScreen extends StatelessWidget {
   const DetailsScreen({
     super.key,

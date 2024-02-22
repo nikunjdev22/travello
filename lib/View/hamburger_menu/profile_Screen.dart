@@ -6,7 +6,7 @@ import 'package:travello/Constant/image_constant.dart';
 import 'package:travello/common/animation.dart';
 
 import '../../Utils /sizes.dart';
-import '../../common/t_circular_image.dart';
+import 'Widgets/t_circular_image.dart';
 import '../../common/text/section_heading.dart';
 import 'Widgets/profile_menu.dart';
 
