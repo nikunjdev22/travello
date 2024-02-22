@@ -1,7 +1,6 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 /*class DetailsScreen extends StatelessWidget {
   const DetailsScreen({
@@ -96,8 +95,6 @@ class PlaceDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LatLng location =
-        LatLng(27.1751, 78.0421); // Example coordinates for Agra, India
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -109,7 +106,7 @@ class PlaceDetails extends StatelessWidget {
               title: Text(
                 title!,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -131,7 +128,7 @@ class PlaceDetails extends StatelessWidget {
                   Text(
                     title!,
                     style: Theme.of(context).textTheme.headline6!.copyWith(
-                          color: Colors.red,
+                          color: Colors.black,
                         ),
                   ),
                   SizedBox(height: 5),
@@ -143,7 +140,7 @@ class PlaceDetails extends StatelessWidget {
                           Icon(
                             Icons.location_on,
                             size: 18,
-                            color: Colors.red,
+                            color: Colors.black,
                           ),
                           SizedBox(width: 5),
                           Text(
@@ -167,7 +164,7 @@ class PlaceDetails extends StatelessWidget {
                           Icon(
                             Icons.monetization_on,
                             size: 18,
-                            color: Colors.red,
+                            color: Colors.black,
                           ),
                         ],
                       ),
@@ -183,9 +180,9 @@ class PlaceDetails extends StatelessWidget {
                   Text(
                     'Photo Gallery',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.red,
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 10),
@@ -224,9 +221,9 @@ class PlaceDetails extends StatelessWidget {
                   Text(
                     'Nearby Places',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.red,
+                      color: Colors.black,
                     ),
                   ),
                   // Replace with your nearby places widget
@@ -255,9 +252,9 @@ class PlaceDetails extends StatelessWidget {
                     title: Text(
                       'Reviews and Ratings',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.red,
+                        color: Colors.black,
                       ),
                     ),
                     subtitle: Column(
@@ -306,9 +303,9 @@ class PlaceDetails extends StatelessWidget {
                     title: Text(
                       'Local Events and Activities',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.red,
+                        color: Colors.black,
                       ),
                     ),
                     subtitle: Column(
@@ -328,9 +325,9 @@ class PlaceDetails extends StatelessWidget {
                     title: Text(
                       'Personalized Recommendations',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Colors.red,
+                        color: Colors.black,
                       ),
                     ),
                     subtitle: Column(
