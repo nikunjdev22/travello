@@ -1,20 +1,24 @@
+import 'package:animated_rating_stars/animated_rating_stars.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travello/Constant/colors_constant.dart';
 import 'package:travello/Utils%20/sizes.dart';
 import '../../common/text/text.dart';
 
-class DetailsScreen extends StatelessWidget {
+/*class DetailsScreen extends StatelessWidget {
   const DetailsScreen({
     super.key,
     required this.image,
     required this.title,
+    required this.rating,
     required this.description,
     this.additionalItems, // Optional list for additional items
   });
 
-  final String image;
-  final String title;
-  final String description;
+  final String? image;
+  final String? title;
+  final String? rating;
+  final String? description;
   final List<String>? additionalItems; // Optional list for additional items
 
   @override
@@ -63,6 +67,289 @@ class DetailsScreen extends StatelessWidget {
               ),
           ],
         ),
+      ),
+    );
+  }
+}*/
+
+class PlaceDetails extends StatelessWidget {
+  final String? name;
+  final String? title;
+  final String? description;
+  final String? brand;
+  final String? price;
+  final String? url;
+  final String? rating;
+  final String? category;
+  final List<String>? additionalItems;
+
+  const PlaceDetails(
+      {Key? key,
+      this.name,
+      this.title,
+      this.description,
+      this.brand,
+      this.price,
+      this.url,
+      this.rating,
+      this.category,
+      this.additionalItems})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final LatLng location =
+        LatLng(27.1751, 78.0421); // Example coordinates for Agra, India
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: 250,
+            floating: false,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(
+                title!,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              centerTitle: true,
+              titlePadding: EdgeInsets.all(20),
+              background: Image.network(
+                url!,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title!,
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                          color: Colors.red,
+                        ),
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            size: 18,
+                            color: Colors.red,
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            brand!,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            price!,
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.monetization_on,
+                            size: 18,
+                            color: Colors.red,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    description!,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    textAlign: TextAlign.justify,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Photo Gallery',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  if (additionalItems != null && additionalItems!.isNotEmpty)
+                    SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: additionalItems!.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.only(left: 10.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            width: 150, // Set a fixed width for the container
+                            height: 100, // Set a fixed height for the container
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: additionalItems![index] != null
+                                  ? Image.network(
+                                      additionalItems![index],
+                                      fit: BoxFit
+                                          .cover, // Ensure the image covers the container
+                                    )
+                                  : Center(
+                                      child:
+                                          CircularProgressIndicator()), // Placeholder or loading indicator
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Nearby Places',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  // Replace with your nearby places widget
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        url!,
+                      ),
+                    ),
+                    title: Text(
+                      title!,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    subtitle: Text(
+                      category!,
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  // Add reviews and ratings widget here
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      'Reviews and Ratings',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ),
+                    subtitle: Column(
+                      children: [
+                        // Add your review items here
+                        ListTile(
+                          title: Text(title!),
+                          subtitle: Text(category!),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              AnimatedRatingStars(
+                                initialRating: 3.5,
+                                minRating: 0.0,
+                                maxRating: 5.0,
+                                filledColor: Colors.amber,
+                                emptyColor: Colors.grey,
+                                filledIcon: Icons.star,
+                                halfFilledIcon: Icons.star_half,
+                                emptyIcon: Icons.star_border,
+                                onChanged: (double rating) {
+                                  // Handle the rating change here
+                                  print('Rating: $rating');
+                                },
+                                displayRatingValue: true,
+                                interactiveTooltips: true,
+                                customFilledIcon: Icons.star,
+                                customHalfFilledIcon: Icons.star_half,
+                                customEmptyIcon: Icons.star_border,
+                                starSize: 18.0,
+                                animationDuration: Duration(milliseconds: 300),
+                                animationCurve: Curves.easeInOut,
+                                readOnly: false,
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Add more review items as needed
+                      ],
+                    ),
+                  ),
+
+                  // Add local events and activities here
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      'Local Events and Activities',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ),
+                    subtitle: Column(
+                      children: [
+                        // Add your event items here
+                        ListTile(
+                          title: Text(title!),
+                          subtitle: Text(category!),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Add personalized recommendations here
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      'Personalized Recommendations',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ),
+                    subtitle: Column(
+                      children: [
+                        // Add your recommendation items here
+                        ListTile(
+                          title: Text(title!),
+                          subtitle: Text(category!),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
