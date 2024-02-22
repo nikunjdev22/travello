@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:travello/View/Common%20WebView/common_webview.dart';
 
+import '../View/AboutUS/about_us.dart';
 import '../View/hamburger_menu/profile_Screen.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -11,7 +13,6 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -21,21 +22,49 @@ class DrawerWidget extends StatelessWidget {
             icon: Icons.home,
             text: 'About Us',
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutScreen()),
+              );
+              /*Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CommonWebview(
+                          appbarTitle: 'About Us',
+                          url:
+                              'https://www.itpathsolutions.com/privacy-policy/',
+                        )),
+              );*/
             },
           ),
           ListTileWidget(
             icon: Icons.privacy_tip_outlined,
             text: 'Privacy Policy',
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CommonWebview(
+                          appbarTitle: 'Privacy Policy',
+                          url:
+                              'https://www.itpathsolutions.com/privacy-policy/',
+                        )),
+              );
             },
           ),
           ListTileWidget(
             icon: Iconsax.book,
             text: 'Terms & Conditions',
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CommonWebview(
+                          appbarTitle: 'Terms & Conditions',
+                          url:
+                              'https://www.itpathsolutions.com/privacy-policy/',
+                        )),
+              );
             },
           ),
           ListTileWidget(

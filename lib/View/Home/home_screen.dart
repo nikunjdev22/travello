@@ -19,31 +19,33 @@ class HomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: AppColors.white,
+          backgroundColor: AppColors.white,
           appBar: AppBar(
             backgroundColor: AppColors.white,
             title: Center(child: Text("Home Screen")),
             actions: [
-              TCircularImage(image: AppImages.user, width: 50,height: 50),
+              TCircularImage(image: AppImages.user, width: 50, height: 50),
             ],
-           bottom: PreferredSize(
-              preferredSize: Size.fromHeight(120.0), // Adjust the height as needed
+            bottom: PreferredSize(
+              preferredSize:
+                  Size.fromHeight(120.0), // Adjust the height as needed
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 20,top: 10),
+                    padding: const EdgeInsets.only(left: 20, top: 10),
                     child: TText(
-                      text :"Welcome Travello",
+                      text: "Welcome Travello",
                       fontSize: 25,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20,top: 5,bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 20, top: 5, bottom: 10),
                     child: TText(
-                      text :"Let's Explore Places : ",
+                      text: "Let's Explore Places : ",
                       fontSize: 18,
                       color: Colors.black,
                     ),
@@ -60,11 +62,12 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          drawer: DrawerWidget() ,
-
+          drawer: DrawerWidget(),
           body: Column(
             children: [
-              SizedBox(height: TSizes.defaultSpace,),
+              SizedBox(
+                height: TSizes.defaultSpace,
+              ),
               TSearchContainer(
                 text: "Search", // Adjust the placeholder text
               ),
@@ -73,19 +76,15 @@ class HomeScreen extends StatelessWidget {
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
-                    : TabBarView(
-                      children: [
+                    : TabBarView(children: [
                         ListViewPage(),
                         Text('gcu'),
                         Text('gcu'),
                         Text('gcu'),
-                    ])),
+                      ])),
               ),
             ],
           )),
     );
   }
-
-
 }
-

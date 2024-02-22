@@ -8,7 +8,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      color: AppColors.white,
+        color: AppColors.white,
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.system,
         home: Scaffold(
@@ -16,7 +16,6 @@ class App extends StatelessWidget {
           body: Center(
             child: CircularProgressIndicator(color: Colors.blue),
           ),
-        )
-    );
+        ));
   }
 }
