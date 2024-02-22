@@ -1,9 +1,7 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travello/Constant/colors_constant.dart';
-import 'package:travello/Utils%20/sizes.dart';
-import '../../common/text/text.dart';
+import 'package:travello/common/text/text.dart';
 
 /*class DetailsScreen extends StatelessWidget {
   const DetailsScreen({
@@ -79,7 +77,7 @@ class PlaceDetails extends StatelessWidget {
   final String? brand;
   final String? price;
   final String? url;
-  final String? rating;
+  final double? dynamicRating;
   final String? category;
   final List<String>? additionalItems;
 
@@ -91,36 +89,24 @@ class PlaceDetails extends StatelessWidget {
       this.brand,
       this.price,
       this.url,
-      this.rating,
+      this.dynamicRating,
       this.category,
       this.additionalItems})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final LatLng location =
-        LatLng(27.1751, 78.0421); // Example coordinates for Agra, India
     return Scaffold(
       body: CustomScrollView(
-        slivers: <Widget>[
+        slivers: [
           SliverAppBar(
             expandedHeight: 250,
             floating: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                title!,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              centerTitle: true,
-              titlePadding: EdgeInsets.all(20),
               background: Image.network(
                 url!,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),
@@ -130,13 +116,12 @@ class PlaceDetails extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title!,
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                          color: Colors.red,
-                        ),
+                  TText(
+                    text: title!,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -145,53 +130,45 @@ class PlaceDetails extends StatelessWidget {
                           Icon(
                             Icons.location_on,
                             size: 18,
-                            color: Colors.red,
+                            color: AppColors.black,
                           ),
                           SizedBox(width: 5),
-                          Text(
-                            brand!,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                            ),
+                          TText(
+                            text: brand!,
+                            fontSize: 16,
                           ),
                         ],
                       ),
                       Row(
                         children: [
-                          Text(
-                            price!,
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(width: 5),
                           Icon(
                             Icons.monetization_on,
                             size: 18,
-                            color: Colors.red,
+                            color: Colors.black,
                           ),
+                          TText(
+                            text: price!,
+                            fontSize: 16,
+                          ),
+                          SizedBox(width: 5),
                         ],
                       ),
                     ],
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    description!,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    textAlign: TextAlign.justify,
+                  TText(
+                    text: description!,
+                    fontSize: 16,
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    'Photo Gallery',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ),
+                  TText(
+                    text: 'Photo Gallery',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                   SizedBox(height: 10),
-                  if (additionalItems != null && additionalItems!.isNotEmpty)
+                  if (additionalItems != null &&
+                      additionalItems!.isNotEmpty)
                     SizedBox(
                       height: 100,
                       child: ListView.builder(
@@ -199,73 +176,53 @@ class PlaceDetails extends StatelessWidget {
                         itemCount: additionalItems!.length,
                         itemBuilder: (context, index) {
                           return Container(
-                            margin: EdgeInsets.only(left: 10.0),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            width: 150, // Set a fixed width for the container
-                            height: 100, // Set a fixed height for the container
+                            margin: EdgeInsets.only(right: 8.0),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: additionalItems![index] != null
-                                  ? Image.network(
-                                      additionalItems![index],
-                                      fit: BoxFit
-                                          .cover, // Ensure the image covers the container
-                                    )
-                                  : Center(
-                                      child:
-                                          CircularProgressIndicator()), // Placeholder or loading indicator
-                            ),
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  additionalItems![index],
+                                  fit: BoxFit.fill,
+                                )),
                           );
                         },
                       ),
                     ),
                   SizedBox(height: 20),
-                  Text(
-                    'Nearby Places',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ),
+                  TText(
+                    text: 'Nearby Places',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                   // Replace with your nearby places widget
                   ListTile(
+                    contentPadding: EdgeInsets.zero,
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(
                         url!,
                       ),
                     ),
-                    title: Text(
-                      title!,
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+                    title: TText(
+                      text: title!,
+                      fontSize: 16,
                     ),
-                    subtitle: Text(
-                      category!,
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
+                    subtitle: TText(
+                      text: category!,
+                      fontSize: 14,
                     ),
                   ),
                   // Add reviews and ratings widget here
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      'Reviews and Ratings',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
-                      ),
+                    title: TText(
+                      text: 'Reviews and Ratings',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                     subtitle: Column(
                       children: [
                         // Add your review items here
                         ListTile(
+                          contentPadding: EdgeInsets.zero,
                           title: Text(title!),
                           subtitle: Text(category!),
                           trailing: Row(
@@ -301,22 +258,18 @@ class PlaceDetails extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  // Add local events and activities here
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      'Local Events and Activities',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
-                      ),
+                    title: TText(
+                      text: 'Local Events and Activities',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                     subtitle: Column(
                       children: [
                         // Add your event items here
                         ListTile(
+                          contentPadding: EdgeInsets.zero,
                           title: Text(title!),
                           subtitle: Text(category!),
                         ),
@@ -327,18 +280,16 @@ class PlaceDetails extends StatelessWidget {
                   // Add personalized recommendations here
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      'Personalized Recommendations',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
-                      ),
+                    title: TText(
+                      text: 'Personalized Recommendations',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                     subtitle: Column(
                       children: [
                         // Add your recommendation items here
                         ListTile(
+                          contentPadding: EdgeInsets.zero,
                           title: Text(title!),
                           subtitle: Text(category!),
                         ),

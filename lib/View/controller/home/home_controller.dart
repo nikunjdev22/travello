@@ -6,7 +6,6 @@ import 'package:travello/model/product.dart';
 class HomeController extends GetxController {
   var isLoading = false.obs;
   ProductData? productData;
-  RxList<String> imageUrls = <String>[].obs;
 
   @override
   Future<void> onInit() async {

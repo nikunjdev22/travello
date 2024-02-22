@@ -7,10 +7,10 @@ class TText extends StatelessWidget {
   TText(
       {super.key,
       required this.text,
-      this.letterSpace = 1,
+      this.letterSpace ,
       this.height = 1,
       this.fontSize = TSizes.fontSizeMd,
-      this.color = AppColors.white,
+      this.color = AppColors.black,
       this.fontWeight});
 
   final String text;
