@@ -464,6 +464,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.4"
+  scroll_to_animate_tab:
+    dependency: "direct main"
+    description:
+      name: scroll_to_animate_tab
+      sha256: a988f3b9f1e6f5be8ef5ab61033002e58073761beda325890f943a58e89ec4c9
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2+3"
+  scrollable_positioned_list:
+    dependency: transitive
+    description:
+      name: scrollable_positioned_list
+      sha256: "1b54d5f1329a1e263269abc9e2543d90806131aa14fe7c6062a8054d57249287"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.8"
   sky_engine:
     dependency: transitive
     description: flutter

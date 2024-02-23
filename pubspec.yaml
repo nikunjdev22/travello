@@ -46,6 +46,7 @@ dependencies:
   http: ^1.2.0
   carousel_slider: ^4.2.1
   animated_rating_stars: ^1.0.1
+  scroll_to_animate_tab: ^0.0.2+3
 
 dev_dependencies:
   flutter_test:
